@@ -1,11 +1,12 @@
-# Homeland::Site
-Short description and motivation.
+Homeland::Site Plugin
+---------------------
 
-## Usage
-How to use my plugin.
+酷站插件 for Homeland.
+
 
 ## Installation
-Add this line to your application's Gemfile:
+
+Add this line to your Homeland's Gemfile:
 
 ```ruby
 gem 'homeland-site'
@@ -16,13 +17,6 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install homeland-site
-```
-
-## Contributing
-Contribution directions go here.
-
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+[MIT License](http://opensource.org/licenses/MIT).
