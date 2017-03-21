@@ -1,0 +1,13 @@
+"zh-CN":
+  plugin:
+    site: 酷站
+  activerecord:
+    models:
+      site: 酷站
+      site_node: 酷站分类
+    attributes:
+      site:
+        name: 网站名称
+        url: 地址
+        desc: 简单介绍
+        site_node_id: 分类

@@ -1,0 +1,19 @@
+<div id="site" class="panel panel-default">
+  <div class="panel-heading">提交酷站</div>
+  <div class="panel-body">
+    <%= simple_form_for(@site) do |f| %>
+      <%= render "/shared/error_messages", target: @site  %>
+        <%= f.input :site_node_id, collection: SiteNode.all.collect { |t| [t.name, t.id] }, include_blank: false %>
+
+        <%= f.input :name %>
+        <%= f.input :url, input_html: { class: "xxlarge" }, placeholder: "http://"  %>
+        <%= f.input :desc, as: :text, input_html: { class: "xxlarge", rows: "3" } %>
+
+        <div class="form-group">
+          <%= f.submit '提交', class: "btn btn-primary", 'data-disable-with' => '提交中...' %>
+          or
+          <%= link_to '取消', sites_path %>
+        </div>
+      <% end %>
+    </div>
+</div>
