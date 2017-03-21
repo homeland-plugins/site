@@ -1,7 +1,7 @@
 <% title_tag t('plugin.site') %>
 
 <div id="site_nodes">
-  <% if can? :create, Site %>
+  <% if can? :create, ::Site %>
   <div class="panel panel-default">
     <div class="panel-body">
       <%= raw Setting.site_index_html %>

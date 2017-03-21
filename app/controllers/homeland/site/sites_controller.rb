@@ -5,10 +5,12 @@ module Homeland::Site
     end
 
     def new
+      authorize! :create, ::Site
       @site = ::Site.new
     end
 
     def create
+      authorize! :create, ::Site
       @site = ::Site.new(site_params)
       @site.user_id = current_user.id
       if @site.save

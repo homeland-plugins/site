@@ -9,7 +9,7 @@ module Homeland::Site
       if @user.blank?
         roles_for_anonymous
       elsif user.roles?(:site_editor)
-        can :create, Site
+        can :create, ::Site
       else
         roles_for_anonymous
       end
@@ -19,18 +19,18 @@ module Homeland::Site
 
     # 普通会员权限
     def roles_for_site_editors
-      can :create, Site
+      can :create, ::Site
       basic_read_only
     end
 
     # 未登录用户权限
     def roles_for_anonymous
-      cannot :manage, Site
+      cannot :manage, ::Site
       basic_read_only
     end
 
     def basic_read_only
-      can :read, Site
+      can :read, ::Site
     end
   end
 end
