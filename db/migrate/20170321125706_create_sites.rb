@@ -24,6 +24,7 @@ class CreateSites < ActiveRecord::Migration[5.0]
 
     add_index 'sites', ['site_node_id'], name: 'index_sites_on_site_node_id', using: :btree
     add_index 'sites', ['url'], name: 'index_sites_on_url', using: :btree
+    add_index :sites, [:site_node_id, :deleted_at]
   end
 
   def down
