@@ -1,18 +1,28 @@
-<div id="admin_site" class="form">
-
-<%= simple_form_for([:admin,@site]) do |f| %>
+<%= form_for [:admin, @site] do |f| %>
   <%= render "/shared/error_messages", target: @site  %>
-  <fieldset>
-    <legend><%= t("common.edit") %></legend>
-      <%= f.input :name %>
-      <%= f.input :url, input_html: { class: "xxlarge" }, placeholder: "http://"  %>
-      <%= f.input :desc, as: :text, input_html: { class: "xxlarge", rows: "3" } %>
-      <%= f.input :site_node_id, collection: SiteNode.all.collect { |t| [t.name, t.id] }, include_blank: false %>
-      <div class="form-actions">
-      <%= f.submit '保存', class: "btn btn-primary", 'data-disable-with' => '保存中...' %>
-      or
-      <%= link_to '取消', admin_sites_path %>
-    </div>
-  </fieldset>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :url %>
+    <%= f.url_field :url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :url %>
+    <%= f.select :site_node_id, SiteNode.all.collect { |t| [t.name, t.id] }, { include_blank: false }, { class: "form-control" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :desc %>
+    <%= f.text_area :desc, class: "form-control", rows: 3 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit '保存', class: "btn btn-primary", 'data-disable-with' => '保存中...' %>
+    <%= link_to '取消', admin_sites_path, class: "btn btn-outline-primary" %>
+  </div>
 <% end %>
-</div>

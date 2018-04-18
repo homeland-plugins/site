@@ -2,21 +2,21 @@
 
 <div id="site_nodes">
   <% if can? :create, ::Site %>
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <div class="card">
+    <div class="card-body">
       <%= raw Setting.site_index_html %>
-      <%= link_to('创建', new_site_path, class: "btn btn-success")%>
+      <%= link_to('提交酷站', new_site_path, class: "btn btn-primary")%>
     </div>
   </div>
   <% end %>
 
   <% cache(["plugin/sites", t: CacheVersion.sites_updated_at, d: Date.today]) do %>
     <% @site_nodes.each do |node| %>
-    <div class="panel panel-default">
-      <div class="panel-heading"><%= node.name %></div>
-      <div class="panel-body row">
+    <div class="card">
+      <div class="card-header"><%= node.name %></div>
+      <div class="card-body row">
         <% node.sites.each do |item| %>
-        <div class="col-md-2 site">
+        <div class="col-md-3 site">
           <%= image_tag(item.favicon_url, class: "favicon", style: "width: 16px; height: 16px;")%>
           <%= link_to item.name, item.url, target: "_blank", rel: "twipsy", title: item.desc %>
         </div>
