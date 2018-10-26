@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :url %>
-    <%= f.select :site_node_id, SiteNode.all.collect { |t| [t.name, t.id] }, { include_blank: false }, { class: "form-control" } %>
+    <%= f.select :site_node_id, SiteNode.name_options, { include_blank: false }, { class: "form-control" } %>
   </div>
 
   <div class="form-group">
