@@ -3,7 +3,7 @@ module Homeland::Site
     isolate_namespace Homeland::Site
 
     initializer 'homeland.site.init' do |app|
-      next unless Setting.has_module?(:site)
+      next unless (defined? Setting) && Setting.has_module?(:site)
       Homeland.register_plugin do |plugin|
         plugin.name = Homeland::Site::NAME
         plugin.display_name = '酷站'
