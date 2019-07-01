@@ -18,7 +18,9 @@ class Site < ApplicationRecord
 
   def favicon_url
     return "" if url.blank?
-    domain = URI.parse(url).host.sub("www.", "")
+    domain = URI.parse(url.strip).host.sub("www.", "")
     "https://favicon.ruby-china.com/ip2/#{domain}.ico"
+  rescue
+    ""
   end
 end

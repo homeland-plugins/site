@@ -26,5 +26,11 @@ class Homeland::SiteTest < ActiveSupport::TestCase
 
     site = ::Site.new(url: "http://google.com")
     assert_equal "https://favicon.ruby-china.com/ip2/google.com.ico", site.favicon_url
+
+    site = ::Site.new(url: "http://support.google.com")
+    assert_equal "https://favicon.ruby-china.com/ip2/support.google.com.ico", site.favicon_url
+
+    site = ::Site.new(url: "httpgooglecom")
+    assert_equal "", site.favicon_url
   end
 end
