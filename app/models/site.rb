@@ -5,7 +5,7 @@ class Site < ApplicationRecord
   belongs_to :user
 
   validates :url, :name, :site_node_id, presence: true
-  validates :url, uniqueness: true
+  validates :url, format: { with: /https?:\/\/[\S]+/ }, uniqueness: true
 
   after_save :update_cache_version
   after_destroy :update_cache_version
@@ -14,17 +14,10 @@ class Site < ApplicationRecord
     CacheVersion.sites_updated_at = Time.now.to_i
   end
 
-  before_validation :fix_urls
-  def fix_urls
-    unless url.blank?
-      url = self.url.gsub(%r{http[s]{0,1}://}, '').split('/').join('/')
-      self.url = "http://#{url}"
-    end
-  end
-
   def favicon_url
     return '' if url.blank?
-    domain = url.gsub('http://', '')
+    # 又拍云获取ico不能携带www.前缀, 以及域名以/结尾时清除它
+    domain = url.gsub(%r{(http[s]{0,1}:\/\/(www\.)?|/$)}, '')
     "https://favicon.b0.upaiyun.com/ip2/#{domain}.ico"
   end
 end
