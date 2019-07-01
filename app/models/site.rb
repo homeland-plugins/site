@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Site < ApplicationRecord
   include SoftDelete
 
@@ -15,9 +17,8 @@ class Site < ApplicationRecord
   end
 
   def favicon_url
-    return '' if url.blank?
-    # 又拍云获取ico不能携带www.前缀, 以及域名以/结尾时清除它
-    domain = url.gsub(%r{(http[s]{0,1}:\/\/(www\.)?|/$)}, '')
-    "https://favicon.b0.upaiyun.com/ip2/#{domain}.ico"
+    return "" if url.blank?
+    domain = URI.parse(url).host.sub("www.", "")
+    "https://favicon.ruby-china.com/ip2/#{domain}.ico"
   end
 end
