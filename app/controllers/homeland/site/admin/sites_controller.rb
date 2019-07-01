@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Homeland::Site
   module Admin
     class SitesController < ::Admin::ApplicationController
@@ -7,7 +9,7 @@ module Homeland::Site
       def index
         @sites = ::Site.unscoped.recent.includes(:user, :site_node)
         if params[:q].present?
-          @sites = @sites.where('name LIKE ?', "%#{params[:q]}%")
+          @sites = @sites.where("name LIKE ?", "%#{params[:q]}%")
         end
         @sites = @sites.page(params[:page])
       end
@@ -26,17 +28,17 @@ module Homeland::Site
         @site = ::Site.new(params[:site].permit!)
 
         if @site.save
-          redirect_to(admin_sites_path, notice: 'Site 创建成功。')
+          redirect_to(admin_sites_path, notice: "Site 创建成功。")
         else
-          render action: 'new'
+          render action: "new"
         end
       end
 
       def update
         if @site.update(params[:site].permit!)
-          redirect_to(admin_sites_path, notice: 'Site 更新成功。')
+          redirect_to(admin_sites_path, notice: "Site 更新成功。")
         else
-          render action: 'edit'
+          render action: "edit"
         end
       end
 
@@ -52,9 +54,9 @@ module Homeland::Site
 
       private
 
-      def set_site
-        @site = ::Site.unscoped.find(params[:id])
-      end
+        def set_site
+          @site = ::Site.unscoped.find(params[:id])
+        end
     end
   end
 end

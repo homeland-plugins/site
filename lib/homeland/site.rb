@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "homeland/site/version"
 require "homeland/site/engine"
 

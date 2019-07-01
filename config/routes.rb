@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Homeland::Site::Engine.routes.draw do
   resources :sites
   namespace :admin do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Homeland::Site
   class SitesController < Homeland::Site::ApplicationController
     def index
@@ -14,16 +16,16 @@ module Homeland::Site
       @site = ::Site.new(site_params)
       @site.user_id = current_user.id
       if @site.save
-        redirect_to(sites_path, notice: '提交成功。谢谢。')
+        redirect_to(sites_path, notice: "提交成功。谢谢。")
       else
-        render action: 'new'
+        render action: "new"
       end
     end
 
     private
 
-    def site_params
-      params.require(:site).permit(:name, :desc, :url, :favorite, :site_node_id)
-    end
+      def site_params
+        params.require(:site).permit(:name, :desc, :url, :favorite, :site_node_id)
+      end
   end
 end
