@@ -4,6 +4,10 @@ module Homeland::Site
   class Engine < ::Rails::Engine
     isolate_namespace Homeland::Site
 
+    initializer 'homeland.site.assets.precompile', group: :all do |app|
+      app.config.assets.precompile += %w[homeland/site/application.css homeland/site/application.js]
+    end
+
     initializer "homeland.site.init" do |app|
       next unless (defined? Setting) && Setting.has_module?(:site)
       Homeland.register_plugin do |plugin|
