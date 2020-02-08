@@ -5,10 +5,10 @@ module Homeland::Site
     isolate_namespace Homeland::Site
 
     initializer "homeland.site.migrate" do |app|
-      migrate_paths = config.paths["db/migrate"].expanded
+      migrate_paths = [File.expand_path("../../../migrate", __dir__)]
 
       # Execute Migrations on engine load.
-      ActiveRecord::Tasks::DatabaseTasks.migrations_paths += migrate_paths
+      ActiveRecord::Migrator.migrations_paths += migrate_paths
       begin
         ActiveRecord::Tasks::DatabaseTasks.migrate
       rescue ActiveRecord::NoDatabaseError
