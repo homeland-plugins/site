@@ -6,9 +6,13 @@ module Homeland::Site
 
     initializer "homeland.site.migrate" do |app|
       migrate_paths = config.paths["db/migrate"].expanded
+
       # Execute Migrations on engine load.
       ActiveRecord::Tasks::DatabaseTasks.migrations_paths += migrate_paths
-      ActiveRecord::Tasks::DatabaseTasks.migrate
+      begin
+        ActiveRecord::Tasks::DatabaseTasks.migrate
+      rescue ActiveRecord::NoDatabaseError
+      end
     end
 
     initializer "homeland.site.init" do |app|
