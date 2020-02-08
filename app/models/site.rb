@@ -7,7 +7,7 @@ class Site < ApplicationRecord
   belongs_to :user
 
   validates :url, :name, :site_node_id, presence: true
-  validates :url, format: { with: /https?:\/\/[\S]+/ }, uniqueness: true
+  validates :url, format: { with: /https?:\/\/[\S]+/ }, uniqueness: { case_sensitive: false }
 
   after_save :update_cache_version
   after_destroy :update_cache_version
