@@ -3,19 +3,9 @@ Homeland::Site Plugin
 
 酷站插件 for Homeland.
 
-
 ## Installation
 
-Add this line to your Homeland's Gemfile:
-
-```ruby
-gem 'homeland-site'
-```
-
-And then execute:
-```bash
-$ bundle
-```
+[Download ZIP](https://github.com/homeland-plugins/site/archive/master.zip) and upload it into Homeland - Admin - Plugins.
 
 ## License
 
