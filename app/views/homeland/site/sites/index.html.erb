@@ -17,7 +17,7 @@
       <div class="card-body row">
         <% node.sites.each do |item| %>
         <div class="col-md-3 site">
-          <%= image_tag(item.favicon_url, class: "favicon", style: "width: 16px; height: 16px;")%>
+          <%= image_tag(item.favicon_url, class: "favicon")%>
           <%= link_to item.name, item.url, target: "_blank", rel: "twipsy", title: item.desc %>
         </div>
         <% end %>
