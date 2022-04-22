@@ -1,5 +1,5 @@
 <%= render 'base' %>
-<div class="toolbar d-flex jcsb">
+<div class="toolbar flex justify-between items-center">
   <form class="form-inline" action="<%= admin_sites_path %>">
     <input type="text" name="q" class="form-control" value="<%= params[:q] %>" placeholder="网站名称">
     <button class="btn btn-secondary">搜索</button>
