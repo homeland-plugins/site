@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SiteNode < ApplicationRecord
-  second_level_cache expires_in: 2.weeks
-
   has_many :sites
 
   validates :name, presence: true, uniqueness: true
@@ -10,7 +8,9 @@ class SiteNode < ApplicationRecord
   after_save :update_cache_version
   after_destroy :update_cache_version
 
-  form_select :name
+  def self.name_options
+    self.all.collect { |node| [node.name, node.id] }
+  end
 
   def update_cache_version
     # 记录节点变更时间，用于清除缓存
