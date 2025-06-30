@@ -1,7 +1,5 @@
 class CreateSites < ActiveRecord::Migration[5.0]
   def up
-    return if ActiveRecord::Base.connection.table_exists? :sites
-
     create_table 'site_nodes', force: :cascade do |t|
       t.string   'name',                   null: false
       t.integer  'sort', default: 0, null: false
